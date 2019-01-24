@@ -1,0 +1,37 @@
+#!/bin/bash
+set -eux
+
+runner_name=${1}
+runner_host=${2}
+runner_token=${3}
+runner_image=${4}
+
+echo "runner_name: ${runner_name}"
+echo "runner_host: ${runner_host}"
+echo "runner_token: ${runner_token}"
+
+export DEBIAN_FRONTEND=noninteractive
+## Install docker
+echo "Install Docker"
+curl -sSL https://get.docker.com/ | sh
+usermod -aG docker ubuntu
+
+echo "Run gitlab-runner"
+docker run -d --name gitlab-runner --restart always \
+           -v /var/run/docker.sock:/var/run/docker.sock \
+           gitlab/gitlab-runner:latest 
+
+echo "Register Runner"
+docker exec gitlab-runner gitlab-runner register \
+               --non-interactive \
+               --name ${runner_name} \
+               --url ${runner_host}/ci \
+               --clone-url ${runner_host} \
+               --registration-token ${runner_token} \
+               --executor docker \
+               --docker-image 'docker:latest' \
+               --docker-privileged \
+               --docker-volumes /var/run/docker.sock:/var/run/docker.sock \
+               --docker-pull-policy 'if-not-present' \
+               --locked="false"
+
