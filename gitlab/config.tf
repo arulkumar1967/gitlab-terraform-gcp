@@ -20,7 +20,7 @@ variable "gitlab_host" {
 
 variable "auth_file" {
     description = "The configuration file containing the credentials to connect to google"
-    default = "../terraformpoc-229221-b7f45204dce7"
+    default = "/home/jayanthiarulkumar98/key.json"
 }
 
 variable "data_size" {

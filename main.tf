@@ -2,7 +2,7 @@ terraform {
   backend "gcs" {
     bucket = "arul_terraform_states"
     prefix = "gitlab/gitlab.tfstate"
-    credentials = "terraformpoc-229221-b7f45204dce7.json"
+    credentials = "/home/jayanthiarulkumar98/key.json"
   }
 }
 
