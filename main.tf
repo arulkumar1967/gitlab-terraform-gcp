@@ -1,8 +1,8 @@
 terraform {
   backend "gcs" {
-    bucket = "arul_terraform_states"
-    prefix = "gitlab/gitlab.tfstate"
-    credentials = "/home/jayanthiarulkumar98/key.json"
+    bucket = "terraform_bootstrap_states"
+    prefix = "gitlab/gitlabtest.tfstate"
+    credentials = "/home/arulkr1967/key.json"
   }
 }
 

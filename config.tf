@@ -1,10 +1,10 @@
 
 variable "project" {
-    default = "terraformpoc-229221"
+    default = "londonuk"
 }
 
 variable "generate_external_ip" {
-    default = false
+    default = true
 }
 
 variable "source_ranges" {

@@ -4,7 +4,7 @@
 #}
 
 output "internal_ip" {
-    value = "${google_compute_instance.gitlab-ce.network_interface.address}"
+    value = "${google_compute_instance.gitlab-ce.*.network_interface.0.address[0]}"
 }
 
 output "initial_root_password" {
